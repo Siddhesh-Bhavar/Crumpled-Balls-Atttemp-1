@@ -1,8 +1,9 @@
-
 const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
+const Render = Matter.Render;
+
 
 var paper1;
 
@@ -41,8 +42,11 @@ function setup() {
 	 
  	boxRightBody = Bodies.rectangle(boxPosition+200-20 , boxY, 20,100 , {isStatic:true} );
  	World.add(world, boxRightBody);
-  
-	paper1 = new Paper(100,100,30);
+	
+	 var render = Render.create({ element: document.body, 
+		engine: engine, 
+		options: { width: 1200, height: 700, wireframes: false } });
+	paper1 = new Paper(100,450,30);
 	ground = new Ground(600,670,1200,20)
 
 	
@@ -59,7 +63,7 @@ function draw() {
 
   //paper1.velocityY=6;
   
-  keyPressed();
+  
 
   
   paper1.display(); 
@@ -70,7 +74,9 @@ function draw() {
 
 function keyPressed(){
 	if(keyCode===UP_ARROW){
-		Matter.Body.applyForce(paper1.body,paper1.body.position,{x:85,y:-85})
+		Matter.Body.applyForce(paper1.body,paper1.body.position,{x:50,y:-25})
 	}
 }
+
+
 
